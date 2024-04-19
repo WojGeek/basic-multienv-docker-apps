@@ -1,0 +1,19 @@
+services:
+  backend:
+    image: nodejs/backend
+    build: . 
+    #  context: .
+    #  dockerfile: Dockerfile
+    container_name: prj-1-multi-apps 
+    restart: always
+    networks:
+      - ejemplo-1.com
+    working_dir: /usr/src/app
+    ports:
+      - "4026:8090"
+      #command: "npm start"
+    command: sh -c /usr/src/app/start.sh
+    env_file: .env
+networks:
+  ejemplo-1.com:
+    external: true
